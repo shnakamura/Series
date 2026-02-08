@@ -1,0 +1,66 @@
+﻿using CalamityAmmo.Projectiles;
+using Series.Common.Debuffs;
+using Series.Common.Guns;
+using Series.Common.Shooting;
+using Series.Core.Items;
+using ThoriumMod.Buffs;
+using ThoriumMod.Items.Granite;
+using ThoriumMod.Items.Misc;
+
+namespace Series.Content.Items;
+
+public class BuriedBlasterItem : GunItemActor
+{
+    /// <summary>
+    ///     The duration of the <see cref="GraniteSurge" /> debuff applied by projectiles shot by this
+    ///     item, in frames.
+    /// </summary>
+    public const int GRANITE_SURGE_DEBUFF_DURATION = 3 * 60;
+
+    public override void SetDefaults()
+    {
+        base.SetDefaults();
+
+        Item.DamageType = DamageClass.Ranged;
+
+        Item.SetWeaponValues(24, 2.5f, 10);
+
+        Item.autoReuse = true;
+        Item.noMelee = true;
+
+        Item.width = 44;
+        Item.height = 36;
+
+        Item.UseSound = SoundID.Item40;
+        Item.useTime = 16;
+        Item.useAnimation = 16;
+        Item.useStyle = ItemUseStyleID.Shoot;
+
+        Item.useAmmo = AmmoID.Bullet;
+
+        Item.shootSpeed = 35f;
+        Item.shoot = ProjectileID.Bullet;
+
+        Item.rare = ItemRarityID.Orange;
+
+        Item.Get<ItemDebuffDataComponent>().Add(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
+
+        Item.Get<ItemBurstShootingComponent>().Set(3);
+        Item.Get<ItemMuzzleShootingComponent>().Set(25f);
+        Item.Get<ItemIntervalShootingComponent>().Set(7, ProjectileID.Bee, 3);
+        Item.Get<ItemShootingConversionComponent>().Set(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>());
+    }
+
+    public override void AddRecipes()
+    {
+        base.AddRecipes();
+
+        CreateRecipe()
+            .AddIngredient<BonerBlasterItem>()
+            .AddIngredient<SpiritDroplet>(26)
+            .AddIngredient<GraniteEnergyCore>(6)
+            .AddIngredient(ItemID.Marble, 6)
+            .AddTile(TileID.Anvils)
+            .Register();
+    }
+}

@@ -1,0 +1,13 @@
+displayName = The K Series
+author = nakamurash
+version = 0.1
+
+includePDB = true
+includeSource = true
+
+hideCode = false
+hideResources = false
+
+modReferences = CalamityMod, ThoriumMod, CalamityAmmo, SOTS
+
+sortAfter = CalamityMod, ThoriumMod, CalamityAmmo, SOTS

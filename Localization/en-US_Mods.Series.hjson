@@ -1,0 +1,183 @@
+Items: {
+	SandWingBlasterItem: {
+		DisplayName: Sand Wing Blaster
+		Tooltip: Summons a Vulture to assist you.
+	}
+
+	TheKBlasterItem: {
+		DisplayName: The K Blaster
+		Tooltip: Needs an upgrade... or fifteen
+	}
+
+	SlimedShinobiBlasterItem: {
+		DisplayName: Slimed Shinobi Blaster
+		Tooltip:
+			'''
+			Summons a Vulture to assist you.
+			Bullets inflict Slimed for 3 seconds
+			'''
+	}
+
+	DoubleDarkBlasterItem: {
+		DisplayName: Double Dark Blaster
+		Tooltip:
+			'''
+			Summons a Vulture to assist you.
+			Bullets inflict Slimed for 3 seconds
+			Shoots a burst of 2 bullets at once
+			Converts Musket Balls into Pearl Bullets
+			'''
+	}
+
+	PearlescentBlasterItem: {
+		DisplayName: Pearlescent Blaster
+		Tooltip:
+			'''
+			Summons a Vulture to assist you.
+			Bullets inflict Slimed for 3 seconds
+			Converts Musket Balls into Pearl Bullets
+			'''
+	}
+
+	SeaShockBlasterItem: {
+		DisplayName: Sea Shock Blaster
+		Tooltip:
+			'''
+			Summons a Vulture to assist you.
+			Bullets inflict Galvanic Corrosion for 3 seconds
+			Shoots a burst of 2 bullets at once
+			Shoots a Fungal Round every 5th shot
+			Converts Musket Balls into Pearl Bullets
+			'''
+	}
+
+	SonicMushBlasterItem: {
+		DisplayName: Sonic Mush Blaster
+		Tooltip:
+			'''
+			Summons a Vulture to assist you.
+			Bullets inflict Slimed for 3 seconds
+			Shoots a burst of 2 bullets at once
+			Shoots a Fungal Round every 5th shot
+			Converts Musket Balls into Pearl Bullets
+			'''
+	}
+
+	BigKBlasterItem: {
+		DisplayName: Big K Blaster
+		Tooltip:
+			'''
+			One barrel...
+			No friends...
+			No effects...
+			No extra shots...
+			Back to the basics
+			'''
+	}
+
+	AstroDuoBlasterItem: {
+		DisplayName: Astro Duo Blaster
+		Tooltip:
+			'''
+			Summons two Spaceships to assist you.
+			Bullets inflict Galvanic Corrosion for 3 seconds
+			Shoots a burst of 2 bullets at once
+			Shoots a Fungal Round every 5th shot
+			Converts Musket Balls into Pearl Bullets
+			'''
+	}
+
+	BeeBlasterItem: {
+		DisplayName: Bee Blaster
+		Tooltip:
+			'''
+			Summons two Spaceships to assist you.
+			Bullets inflict Galvanic Corrosion for 3 seconds
+			Shoots a burst of 2 bullets at once
+			Shoots 3 Bees every 7th shot
+			Converts Musket Balls into Blood Bullets
+			Bullets rain Acid Feathers that inflict Irradiated for 3 seconds
+			'''
+	}
+
+	BlastforgeBlasterItem: {
+		DisplayName: Blastforge Blaster
+		Tooltip:
+			'''
+			Summons two Spaceships to assist you.
+			Bullets inflict Granite Surge for 3 seconds
+			Shoots a burst of 3 bullets at once
+			Shoots a Drillforge Missile every 6th shot
+			Converts Musket Balls into Blood Bullets
+			Bullets rain Acid Feathers that inflict Irradiated for 3 seconds
+			Bullets bounce off surfaces twice
+			'''
+	}
+
+	BloodBlasterItem: {
+		DisplayName: Blood Blaster
+		Tooltip:
+			'''
+			Summons two Spaceships to assist you.
+			Bullets inflict Galvanic Corrosion for 3 seconds
+			Shoots a burst of 2 bullets at once
+			Shoots a Fungal Round every 5th shot
+			Converts Musket Balls into Blood Bullets
+			'''
+	}
+
+	BonerBlasterItem: {
+		DisplayName: Boner Blaster
+		Tooltip:
+			'''
+			Summons two Spaceships to assist you.
+			Bullets inflict Galvanic Corrosion for 3 seconds
+			Shoots a burst of 3 bullets at once
+			Shoots 3 Bees every 7th shot
+			Converts Musket Balls into Blood Bullets
+			Bullets rain Acid Feathers that inflict Irradiated for 3 seconds
+			'''
+	}
+
+	BuriedBlasterItem: {
+		DisplayName: Buried Blaster
+		Tooltip:
+			'''
+			Summons two Spaceships to assist you.
+			Bullets inflict Granite Surge for 3 seconds
+			Shoots a burst of 3 bullets at once
+			Shoots 3 Bees every 7th shot
+			Converts Musket Balls into Blood Bullets
+			Bullets rain Acid Feathers that inflict Irradiated for 3 seconds
+			'''
+	}
+
+	RadioactiveFlyerBlasterItem: {
+		DisplayName: Radioactive Flyer Blaster
+		Tooltip:
+			'''
+			Summons two Spaceships to assist you.
+			Bullets inflict Galvanic Corrosion for 3 seconds
+			Shoots a burst of 2 bullets at once
+			Shoots a Fungal Round every 5th shot
+			Converts Musket Balls into Blood Bullets
+			Bullets rain Acid Feathers that inflict Irradiated for 3 seconds
+			'''
+	}
+
+	SuperSlimedBlasterItem: {
+		DisplayName: Super Slimed Blaster
+		Tooltip:
+			'''
+			Summons two Spaceships to assist you.
+			Bullets inflict Granite Surge for 3 seconds
+			Shoots a burst of 3 bullets at once
+			Shoots 3 Bees every 7th shot
+			Converts Musket Balls into Blood Bullets
+			Bullets rain Acid Feathers that inflict Irradiated for 3 seconds
+			Bullets bounce off surfaces twice
+			'''
+	}
+}
+
+Projectiles.VultureProjectile.DisplayName: Vulture
