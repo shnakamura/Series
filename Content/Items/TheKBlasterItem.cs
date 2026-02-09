@@ -1,5 +1,6 @@
 ﻿using Series.Common.Guns;
 using Series.Common.Shooting;
+using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 
 namespace Series.Content.Items;
@@ -32,7 +33,7 @@ public class TheKBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.Get<ItemMuzzleShootingComponent>().Set(25f);
+        Item.Get<ItemShootComponent>().AddModifier(new MuzzleOffsetModifier(25f));
     }
 
     public override void AddRecipes()

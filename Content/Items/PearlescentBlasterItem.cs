@@ -3,6 +3,7 @@ using CalamityMod.Items.Materials;
 using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Shooting;
+using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 
 namespace Series.Content.Items;
@@ -43,8 +44,9 @@ public class PearlescentBlasterItem : GunItemActor
 
         Item.Get<ItemDebuffDataComponent>().Add(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
 
-        Item.Get<ItemMuzzleShootingComponent>().Set(25f);
-        Item.Get<ItemShootingConversionComponent>().Set(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>());
+        Item.Get<ItemShootComponent>()
+            .AddModifier(new MuzzleOffsetModifier(25f))
+            .AddModifier(new ConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
     }
 
     public override void AddRecipes()

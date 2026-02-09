@@ -2,6 +2,7 @@
 using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Shooting;
+using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 using SOTS.Items.AbandonedVillage;
 using SOTS.Items.Earth;
@@ -48,9 +49,12 @@ public class BlastforgeBlasterItem : GunItemActor
 
         Item.Get<ItemBurstShootingComponent>().Set(3);
         Item.Get<ItemBounceDataComponent>().Set(2);
-        Item.Get<ItemMuzzleShootingComponent>().Set(25f);
+        
+        Item.Get<ItemShootComponent>()
+            .AddModifier(new MuzzleOffsetModifier(25f))
+            .AddModifier(new ConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
+        
         Item.Get<ItemIntervalShootingComponent>().Set(6, ModContent.ProjectileType<ExcavatorRocket>());
-        Item.Get<ItemShootingConversionComponent>().Set(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>());
     }
 
     public override void AddRecipes()
@@ -58,6 +62,7 @@ public class BlastforgeBlasterItem : GunItemActor
         base.AddRecipes();
 
         CreateRecipe()
+            .AddIngredient<SuperSlimedBlasterItem>()
             .AddIngredient<ExcavatorBreastplate>()
             .AddIngredient(ItemID.ApprenticeScarf)
             .AddIngredient<VibrantBar>(12)

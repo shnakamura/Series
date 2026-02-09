@@ -1,6 +1,7 @@
 ﻿using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Shooting;
+using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 
 namespace Series.Content.Items;
@@ -39,8 +40,8 @@ public class SlimedShinobiBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.Get<ItemMuzzleShootingComponent>().Set(25f);
-
+        Item.Get<ItemShootComponent>().AddModifier(new MuzzleOffsetModifier(25f));
+        
         Item.Get<ItemDebuffDataComponent>().Add(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
     }
 

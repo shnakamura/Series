@@ -6,6 +6,7 @@ using CalamityMod.Projectiles.Ranged;
 using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Shooting;
+using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 using ThoriumMod.Items.NPCItems;
 
@@ -47,10 +48,12 @@ public class SeaShockBlasterItem : GunItemActor
 
         Item.Get<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
 
+        Item.Get<ItemShootComponent>()
+            .AddModifier(new MuzzleOffsetModifier(25f))
+            .AddModifier(new ConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
+        
         Item.Get<ItemBurstShootingComponent>().Set(2);
-        Item.Get<ItemMuzzleShootingComponent>().Set(25f);
         Item.Get<ItemIntervalShootingComponent>().Set(5, ModContent.ProjectileType<FungiOrb>());
-        Item.Get<ItemShootingConversionComponent>().Set(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>());
     }
 
     public override void AddRecipes()
@@ -58,7 +61,7 @@ public class SeaShockBlasterItem : GunItemActor
         base.AddRecipes();
 
         CreateRecipe()
-            .AddIngredient<DoubleDarkBlasterItem>()
+            .AddIngredient<SonicMushBlasterItem>()
             .AddIngredient<MarineLauncher>()
             .AddIngredient<SeaRemains>(8)
             .AddIngredient<SeaPrism>(20)

@@ -2,6 +2,9 @@
 
 namespace Series.Core.Items;
 
+/// <summary>
+///     Provides <see cref="Item"/> extension methods regarding <see cref="ItemComponent"/>.
+/// </summary>
 public static class ItemComponentExtensions
 {
     public static void Enable<T>(this Item item) where T : ItemComponent

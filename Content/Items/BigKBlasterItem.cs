@@ -39,6 +39,7 @@ public class BigKBlasterItem : GunItemActor
         base.AddRecipes();
 
         CreateRecipe()
+            .AddIngredient<BlastforgeBlasterItem>()
             .AddIngredient(ItemID.RangerEmblem)
             .AddIngredient(ItemID.SoulofNight, 5)
             .AddIngredient(ItemID.SoulofLight, 5)

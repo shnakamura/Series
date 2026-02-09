@@ -3,6 +3,7 @@ using CalamityMod.Items.Materials;
 using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Shooting;
+using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 using ThoriumMod.Buffs;
 
@@ -44,11 +45,13 @@ public class SuperSlimedBlasterItem : GunItemActor
 
         Item.Get<ItemDebuffDataComponent>().Add(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
 
+        Item.Get<ItemShootComponent>()
+            .AddModifier(new MuzzleOffsetModifier(25f))
+            .AddModifier(new ConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
+        
         Item.Get<ItemBurstShootingComponent>().Set(3);
         Item.Get<ItemBounceDataComponent>().Set(2);
-        Item.Get<ItemMuzzleShootingComponent>().Set(25f);
         Item.Get<ItemIntervalShootingComponent>().Set(7, ProjectileID.Bee, 3);
-        Item.Get<ItemShootingConversionComponent>().Set(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>());
     }
 
     public override void AddRecipes()

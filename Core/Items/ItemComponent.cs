@@ -8,7 +8,7 @@ public abstract class ItemComponent : GlobalItem
     /// <summary>
     ///     Gets or sets whether the component is enabled.
     /// </summary>
-    public bool Enabled { get; set; }
+    public bool Enabled { get; internal set; }
 
     /// <summary>
     ///     <inheritdoc cref="GlobalItem.InstancePerEntity" />
