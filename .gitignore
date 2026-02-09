@@ -402,5 +402,8 @@ FodyWeavers.xsd
 # JetBrains
 .idea/
 
-# tModLoader
+# tModLoader Directories
 [Ll]ib/
+
+# tModLoader Files
+*.dll
