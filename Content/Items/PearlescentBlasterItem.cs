@@ -42,11 +42,11 @@ public class PearlescentBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.Get<ItemDebuffDataComponent>().Add(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
+        Item.GetComponent<ItemDebuffDataComponent>().Add(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
 
-        Item.Get<ItemShootComponent>()
-            .AddModifier(new MuzzleOffsetModifier(25f))
-            .AddModifier(new ConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
+        Item.GetComponent<ItemShootComponent>()
+            .AddShootModifier(new MuzzleOffsetModifier(25f))
+            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
     }
 
     public override void AddRecipes()

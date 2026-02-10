@@ -1,4 +1,4 @@
-﻿namespace Series.Common.Shooting.Modifiers;
+﻿namespace Series.Common.Shooting;
 
 public interface IShootContextModifier
 {

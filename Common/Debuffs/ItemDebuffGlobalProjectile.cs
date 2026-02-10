@@ -22,7 +22,7 @@ public sealed class ItemDebuffGlobalProjectile : GlobalProjectile
     {
         base.OnSpawn(projectile, source);
         
-        if (source is not EntitySource_ItemUse_WithAmmo use || use.Item?.IsAir == true || !use.Item.TryGet(out ItemDebuffDataComponent component))
+        if (source is not EntitySource_ItemUse_WithAmmo use || use.Item?.IsAir == true || !use.Item.TryGetComponent(out ItemDebuffDataComponent component))
         {
             return;
         }

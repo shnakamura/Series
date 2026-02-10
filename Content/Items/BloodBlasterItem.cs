@@ -45,13 +45,13 @@ public class BloodBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.Get<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
+        Item.GetComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
 
-        Item.Get<ItemShootComponent>()
-            .AddModifier(new MuzzleOffsetModifier(25f))
-            .AddModifier(new ConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
+        Item.GetComponent<ItemShootComponent>()
+            .AddShootModifier(new MuzzleOffsetModifier(25f))
+            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
         
-        Item.Get<ItemIntervalShootingComponent>().Set(5, ModContent.ProjectileType<FungiOrb>());
+        Item.GetComponent<ItemIntervalShootingComponent>().Set(5, ModContent.ProjectileType<FungiOrb>());
     }
 
     public override void AddRecipes()

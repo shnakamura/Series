@@ -40,9 +40,9 @@ public class SlimedShinobiBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.Get<ItemShootComponent>().AddModifier(new MuzzleOffsetModifier(25f));
+        Item.GetComponent<ItemShootComponent>().AddShootModifier(new MuzzleOffsetModifier(25f));
         
-        Item.Get<ItemDebuffDataComponent>().Add(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
+        Item.GetComponent<ItemDebuffDataComponent>().Add(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
     }
 
     public override void AddRecipes()

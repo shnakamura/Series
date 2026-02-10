@@ -10,9 +10,9 @@ public abstract class GunItemActor : ModItem
     {
         base.SetDefaults();
 
-        Item.Enable<ItemShootAnimationComponent>();
+        Item.EnableComponent<ItemShootAnimationComponent>();
         
-        Item.Get<ItemBulletCasingsComponent>().Set(ModContent.GoreType<BulletCasingGore>(), 1);
+        Item.GetComponent<ItemBulletCasingsComponent>().Set(ModContent.GoreType<BulletCasingGore>(), 1);
     }
     
     public override Vector2? HoldoutOffset()

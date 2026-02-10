@@ -35,7 +35,7 @@ public class SandWingBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.Get<ItemShootComponent>().AddModifier(new MuzzleOffsetModifier(25f));
+        Item.GetComponent<ItemShootComponent>().AddShootModifier(new MuzzleOffsetModifier(25f));
     }
 
     public override void AddRecipes()

@@ -13,7 +13,7 @@ public sealed class ItemBounceGlobalProjectile : GlobalProjectile
     {
         base.OnSpawn(projectile, source);
         
-        if (source is not EntitySource_ItemUse_WithAmmo use || use.Item?.IsAir == true || !use.Item.TryGet(out ItemBounceDataComponent component))
+        if (source is not EntitySource_ItemUse_WithAmmo use || use.Item?.IsAir == true || !use.Item.TryGetComponent(out ItemBounceDataComponent component))
         {
             return;
         }

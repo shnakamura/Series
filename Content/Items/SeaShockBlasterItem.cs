@@ -46,14 +46,14 @@ public class SeaShockBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.Get<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
+        Item.GetComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
 
-        Item.Get<ItemShootComponent>()
-            .AddModifier(new MuzzleOffsetModifier(25f))
-            .AddModifier(new ConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
+        Item.GetComponent<ItemShootComponent>()
+            .AddShootModifier(new MuzzleOffsetModifier(25f))
+            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
         
-        Item.Get<ItemBurstShootingComponent>().Set(2);
-        Item.Get<ItemIntervalShootingComponent>().Set(5, ModContent.ProjectileType<FungiOrb>());
+        Item.GetComponent<ItemBurstShootingComponent>().Set(2);
+        Item.GetComponent<ItemIntervalShootingComponent>().Set(5, ModContent.ProjectileType<FungiOrb>());
     }
 
     public override void AddRecipes()
