@@ -5,7 +5,6 @@ using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Recipes;
 using Series.Common.Shooting;
-using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 
 namespace Series.Content.Items;

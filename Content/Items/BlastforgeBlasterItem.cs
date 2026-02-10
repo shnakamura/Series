@@ -1,8 +1,8 @@
 ﻿using CalamityAmmo.Projectiles;
+using Series.Common.Bounce;
 using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Shooting;
-using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 using SOTS.Items.AbandonedVillage;
 using SOTS.Items.Earth;

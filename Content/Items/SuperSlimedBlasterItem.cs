@@ -1,9 +1,9 @@
 ﻿using CalamityAmmo.Projectiles;
 using CalamityMod.Items.Materials;
+using Series.Common.Bounce;
 using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Shooting;
-using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 using ThoriumMod.Buffs;
 

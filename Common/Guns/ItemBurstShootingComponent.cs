@@ -2,7 +2,7 @@
 using Terraria.Audio;
 using Terraria.DataStructures;
 
-namespace Series.Common.Shooting;
+namespace Series.Common.Guns;
 
 /// <summary>
 ///     Handles modifying an item's use time and use animation so that it shoots in bursts of a

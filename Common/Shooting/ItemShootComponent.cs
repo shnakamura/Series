@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 using Terraria.DataStructures;
 

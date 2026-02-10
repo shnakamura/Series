@@ -2,7 +2,6 @@
 using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Shooting;
-using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 using ThoriumMod.Buffs;
 using ThoriumMod.Items.Granite;

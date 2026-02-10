@@ -5,7 +5,6 @@ using CalamityMod.Projectiles.Ranged;
 using Series.Common.Debuffs;
 using Series.Common.Guns;
 using Series.Common.Shooting;
-using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 
 namespace Series.Content.Items;

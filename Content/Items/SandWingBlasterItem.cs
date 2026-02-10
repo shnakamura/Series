@@ -1,6 +1,5 @@
 ﻿using Series.Common.Guns;
 using Series.Common.Shooting;
-using Series.Common.Shooting.Modifiers;
 using Series.Core.Items;
 using ThoriumMod.Items.BossTheGrandThunderBird;
 using ThoriumMod.Items.Sandstone;
