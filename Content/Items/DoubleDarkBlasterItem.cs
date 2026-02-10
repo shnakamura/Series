@@ -1,8 +1,8 @@
 ﻿using CalamityAmmo.Projectiles;
-using Series.Common.Debuffs;
-using Series.Common.Guns;
+using Series.Common.Items.Buffs;
+using Series.Common.Items.Guns;
+using Series.Common.Items.Shooting;
 using Series.Common.Recipes;
-using Series.Common.Shooting;
 using Series.Core.Items;
 
 namespace Series.Content.Items;
@@ -41,13 +41,13 @@ public class DoubleDarkBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.EnableComponent<ItemDebuffDataComponent>().Add(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffComponent>().AddBuff(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
 
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
         
-        Item.EnableComponent<ItemBurstShootingComponent>().Set(2);
+        Item.EnableComponent<ItemBurstShootComponent>().SetBursts(2);
     }
 
     public override void AddRecipes()

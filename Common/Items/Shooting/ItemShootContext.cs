@@ -1,6 +1,6 @@
 ﻿using Terraria.DataStructures;
 
-namespace Series.Common.Shooting;
+namespace Series.Common.Items.Shooting;
 
 public struct ItemShootContext
 {

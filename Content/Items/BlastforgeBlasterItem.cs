@@ -1,8 +1,8 @@
 ﻿using CalamityAmmo.Projectiles;
-using Series.Common.Bounce;
-using Series.Common.Debuffs;
-using Series.Common.Guns;
-using Series.Common.Shooting;
+using Series.Common.Items.Bounce;
+using Series.Common.Items.Buffs;
+using Series.Common.Items.Guns;
+using Series.Common.Items.Shooting;
 using Series.Core.Items;
 using SOTS.Items.AbandonedVillage;
 using SOTS.Items.Earth;
@@ -45,9 +45,9 @@ public class BlastforgeBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
-        Item.EnableComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffComponent>().AddBuff(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
 
-        Item.EnableComponent<ItemBurstShootingComponent>().Set(3);
+        Item.EnableComponent<ItemBurstShootComponent>().SetBursts(3);
         Item.EnableComponent<ItemBounceDataComponent>().Set(2);
         
         Item.EnableComponent<ItemShootComponent>()

@@ -1,6 +1,6 @@
 ﻿using Series.Core.Items;
 
-namespace Series.Common.Graphics;
+namespace Series.Common.Items.Graphics;
 
 public sealed class ItemShootAnimationComponent : ItemComponent
 {

@@ -1,5 +1,5 @@
-﻿using Series.Common.Guns;
-using Series.Common.Shooting;
+﻿using Series.Common.Items.Guns;
+using Series.Common.Items.Shooting;
 using Series.Core.Items;
 
 namespace Series.Content.Items;

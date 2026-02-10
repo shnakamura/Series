@@ -1,7 +1,7 @@
 ﻿using CalamityAmmo.Projectiles;
-using Series.Common.Debuffs;
-using Series.Common.Guns;
-using Series.Common.Shooting;
+using Series.Common.Items.Buffs;
+using Series.Common.Items.Guns;
+using Series.Common.Items.Shooting;
 using Series.Core.Items;
 using ThoriumMod.Buffs;
 using ThoriumMod.Items.Granite;
@@ -43,13 +43,13 @@ public class BuriedBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
-        Item.EnableComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffComponent>().AddBuff(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
 
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
         
-        Item.EnableComponent<ItemBurstShootingComponent>().Set(3);
+        Item.EnableComponent<ItemBurstShootComponent>().SetBursts(3);
         Item.EnableComponent<ItemIntervalShootingComponent>().Set(7, ProjectileID.Bee, 3);
     }
 

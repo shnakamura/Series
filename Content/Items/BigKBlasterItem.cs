@@ -1,4 +1,4 @@
-﻿using Series.Common.Guns;
+﻿using Series.Common.Items.Guns;
 
 namespace Series.Content.Items;
 

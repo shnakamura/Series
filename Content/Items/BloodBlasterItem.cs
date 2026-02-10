@@ -1,9 +1,9 @@
 ﻿using CalamityAmmo.Projectiles;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Projectiles.Ranged;
-using Series.Common.Debuffs;
-using Series.Common.Guns;
-using Series.Common.Shooting;
+using Series.Common.Items.Buffs;
+using Series.Common.Items.Guns;
+using Series.Common.Items.Shooting;
 using Series.Core.Items;
 using ThoriumMod.Items.BossViscount;
 using ThoriumMod.Items.HealerItems;
@@ -44,7 +44,7 @@ public class BloodBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.EnableComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffComponent>().AddBuff(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
 
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))

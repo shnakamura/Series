@@ -2,7 +2,7 @@
 using Series.Core.Items;
 using Terraria.DataStructures;
 
-namespace Series.Common.Shooting;
+namespace Series.Common.Items.Shooting;
 
 public sealed class ItemShootComponent : ItemComponent
 {
@@ -39,7 +39,7 @@ public sealed class ItemShootComponent : ItemComponent
 
         return false;
     }
-    
+
     /// <summary>
     ///     Adds a shoot context modifier to be applied before shooting a projectile.
     /// </summary>

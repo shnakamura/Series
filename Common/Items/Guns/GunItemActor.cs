@@ -1,8 +1,8 @@
-﻿using Series.Common.Graphics;
+﻿using Series.Common.Items.Graphics;
 using Series.Content.Gores;
 using Series.Core.Items;
 
-namespace Series.Common.Guns;
+namespace Series.Common.Items.Guns;
 
 public abstract class GunItemActor : ModItem
 {

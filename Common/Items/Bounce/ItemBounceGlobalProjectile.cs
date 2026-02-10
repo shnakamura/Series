@@ -1,7 +1,7 @@
 ﻿using Series.Core.Items;
 using Terraria.DataStructures;
 
-namespace Series.Common.Bounce;
+namespace Series.Common.Items.Bounce;
 
 public sealed class ItemBounceGlobalProjectile : GlobalProjectile
 {

@@ -3,9 +3,9 @@ using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Projectiles.Ranged;
-using Series.Common.Debuffs;
-using Series.Common.Guns;
-using Series.Common.Shooting;
+using Series.Common.Items.Buffs;
+using Series.Common.Items.Guns;
+using Series.Common.Items.Shooting;
 using Series.Core.Items;
 using ThoriumMod.Items.NPCItems;
 
@@ -45,13 +45,13 @@ public class SeaShockBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.EnableComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffComponent>().AddBuff(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
 
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
         
-        Item.EnableComponent<ItemBurstShootingComponent>().Set(2);
+        Item.EnableComponent<ItemBurstShootComponent>().SetBursts(2);
         Item.EnableComponent<ItemIntervalShootingComponent>().Set(5, ModContent.ProjectileType<FungiOrb>());
     }
 

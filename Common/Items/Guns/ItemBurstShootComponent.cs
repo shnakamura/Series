@@ -2,7 +2,7 @@
 using Terraria.Audio;
 using Terraria.DataStructures;
 
-namespace Series.Common.Guns;
+namespace Series.Common.Items.Guns;
 
 /// <summary>
 ///     Handles modifying an item's use time and use animation so that it shoots in bursts of a
@@ -15,17 +15,17 @@ namespace Series.Common.Guns;
 ///     original firing cadence while allowing multiple shots to be emitted per use without producing
 ///     extra or fractional shots.
 /// </remarks>
-public sealed class ItemBurstShootingComponent : ItemComponent
+public sealed class ItemBurstShootComponent : ItemComponent
 {
     /// <summary>
     ///     Gets the amount of shots to fire in each burst.
     /// </summary>
-    public int BurstShotsAmount { get; private set; }
+    public int Amount { get; private set; }
     
     /// <summary>
-    ///     Gets whether to play the item's use sound on each shot in the burst.
+    ///     Gets or sets whether to play the item's use sound on each shot in the burst.
     /// </summary>
-    public bool PlaySound { get; private set; }
+    public bool PlaySound { get; set; }
 
     public override void SetDefaults(Item entity)
     {
@@ -36,12 +36,12 @@ public sealed class ItemBurstShootingComponent : ItemComponent
             return;
         }
 
-        var target = entity.useTime / BurstShotsAmount;
+        var target = entity.useTime / Amount;
 
         target = Math.Max(1, target);
 
         entity.useTime = target;
-        entity.useAnimation = target * BurstShotsAmount;
+        entity.useAnimation = target * Amount;
 
         entity.consumeAmmoOnLastShotOnly = true;
     }
@@ -59,17 +59,14 @@ public sealed class ItemBurstShootingComponent : ItemComponent
     /// <summary>
     ///     Sets the amount of shots to fire in each burst.
     /// </summary>
-    /// <param name="burstShotsAmount">The amount of shots to fire in each burst.</param>
-    /// <param name="playSound">Whether to play the item's use sound on each shot in the burst.</param>
+    /// <param name="amount">The amount of shots to fire in each burst.</param>
     /// <exception cref="ArgumentOutOfRangeException">
-    ///     Thrown when <paramref name="burstShotsAmount" /> is less than or equal to zero.
+    ///     Thrown when <paramref name="amount" /> is less than or equal to zero.
     /// </exception>
-    public void Set(int burstShotsAmount, bool playSound = true)
+    public void SetBursts(int amount)
     {
-        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(burstShotsAmount, nameof(burstShotsAmount));
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount, nameof(amount));
 
-        BurstShotsAmount = burstShotsAmount;
-
-        PlaySound = playSound;
+        Amount = amount;
     }
 }

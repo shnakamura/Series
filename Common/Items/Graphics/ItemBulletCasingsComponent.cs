@@ -1,7 +1,7 @@
 ﻿using Series.Core.Items;
 using Terraria.GameContent;
 
-namespace Series.Common.Graphics;
+namespace Series.Common.Items.Graphics;
 
 public sealed class ItemBulletCasingsComponent : ItemComponent
 {

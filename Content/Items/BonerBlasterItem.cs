@@ -1,8 +1,8 @@
 ﻿using CalamityAmmo.Projectiles;
 using CalamityMod.Buffs.StatDebuffs;
-using Series.Common.Debuffs;
-using Series.Common.Guns;
-using Series.Common.Shooting;
+using Series.Common.Items.Buffs;
+using Series.Common.Items.Guns;
+using Series.Common.Items.Shooting;
 using Series.Core.Items;
 
 namespace Series.Content.Items;
@@ -41,13 +41,13 @@ public class BonerBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
-        Item.EnableComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffComponent>().AddBuff(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
         
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
         
-        Item.EnableComponent<ItemBurstShootingComponent>().Set(3);
+        Item.EnableComponent<ItemBurstShootComponent>().SetBursts(3);
         Item.EnableComponent<ItemIntervalShootingComponent>().Set(7, ProjectileID.Bee, 3);
     }
 

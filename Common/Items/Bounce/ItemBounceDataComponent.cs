@@ -1,6 +1,6 @@
 ﻿using Series.Core.Items;
 
-namespace Series.Common.Bounce;
+namespace Series.Common.Items.Bounce;
 
 public sealed class ItemBounceDataComponent : ItemComponent
 {
