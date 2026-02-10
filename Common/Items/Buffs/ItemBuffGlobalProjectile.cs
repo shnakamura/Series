@@ -17,7 +17,7 @@ public sealed class ItemBuffGlobalProjectile : GlobalProjectile
     {
         base.OnSpawn(projectile, source);
         
-        if (source is not EntitySource_ItemUse_WithAmmo use || use.Item?.IsAir == true || !use.Item.TryGetComponent(out ItemBuffComponent component))
+        if (source is not EntitySource_ItemUse_WithAmmo use || !use.Item.TryGetComponent(out ItemBuffComponent component) || (component.Mode & ItemBuffMode.Shoot) == 0)
         {
             return;
         }

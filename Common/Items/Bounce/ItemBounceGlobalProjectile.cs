@@ -5,7 +5,15 @@ namespace Series.Common.Items.Bounce;
 
 public sealed class ItemBounceGlobalProjectile : GlobalProjectile
 {
-    public int BounceAmount { get; private set; }
+    /// <summary>
+    ///     Gets the amount of times the projectile can bounce.
+    /// </summary>
+    public int Bounces { get; private set; }
+    
+    /// <summary>
+    ///     Gets the multiplier applied to the projectile's velocity after bouncing.
+    /// </summary>
+    public float Multiplier { get; private set; }
     
     public override bool InstancePerEntity { get; } = true;
 
@@ -13,24 +21,25 @@ public sealed class ItemBounceGlobalProjectile : GlobalProjectile
     {
         base.OnSpawn(projectile, source);
         
-        if (source is not EntitySource_ItemUse_WithAmmo use || use.Item?.IsAir == true || !use.Item.TryGetComponent(out ItemBounceDataComponent component))
+        if (source is not EntitySource_ItemUse_WithAmmo use || !use.Item.TryGetComponent(out ItemBounceComponent component))
         {
             return;
         }
 
-        BounceAmount = component.BounceAmount;
+        Bounces = component.Bounces;
+        Multiplier = component.Multiplier;
     }
 
     public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
     {
-        if (BounceAmount <= 0)
+        if (Bounces <= 0)
         {
             return true;
         }
         
-        BounceAmount--;
+        Bounces--;
         
-        projectile.velocity = -projectile.velocity * 0.75f;
+        projectile.velocity = -projectile.velocity * Multiplier;
 
         return false;
     }

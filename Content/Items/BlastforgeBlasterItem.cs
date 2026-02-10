@@ -48,7 +48,7 @@ public class BlastforgeBlasterItem : GunItemActor
         Item.EnableComponent<ItemBuffComponent>().AddBuff(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
 
         Item.EnableComponent<ItemBurstShootComponent>().SetBursts(3);
-        Item.EnableComponent<ItemBounceDataComponent>().Set(2);
+        Item.EnableComponent<ItemBounceComponent>().SetBounces(2);
         
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))

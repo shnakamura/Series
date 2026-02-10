@@ -50,7 +50,7 @@ public class SuperSlimedBlasterItem : GunItemActor
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
         
         Item.EnableComponent<ItemBurstShootComponent>().SetBursts(3);
-        Item.EnableComponent<ItemBounceDataComponent>().Set(2);
+        Item.EnableComponent<ItemBounceComponent>().SetBounces(2);
         Item.EnableComponent<ItemIntervalShootingComponent>().Set(7, ProjectileID.Bee, 3);
     }
 
