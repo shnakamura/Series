@@ -45,16 +45,16 @@ public class BlastforgeBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
-        Item.GetComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
+        Item.EnableComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
 
-        Item.GetComponent<ItemBurstShootingComponent>().Set(3);
-        Item.GetComponent<ItemBounceDataComponent>().Set(2);
+        Item.EnableComponent<ItemBurstShootingComponent>().Set(3);
+        Item.EnableComponent<ItemBounceDataComponent>().Set(2);
         
-        Item.GetComponent<ItemShootComponent>()
+        Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
         
-        Item.GetComponent<ItemIntervalShootingComponent>().Set(6, ModContent.ProjectileType<ExcavatorRocket>());
+        Item.EnableComponent<ItemIntervalShootingComponent>().Set(6, ModContent.ProjectileType<ExcavatorRocket>());
     }
 
     public override void AddRecipes()

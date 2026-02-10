@@ -33,7 +33,7 @@ public class TheKBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.GetComponent<ItemShootComponent>().AddShootModifier(new MuzzleOffsetModifier(25f));
+        Item.EnableComponent<ItemShootComponent>().AddShootModifier(new MuzzleOffsetModifier(25f));
     }
 
     public override void AddRecipes()

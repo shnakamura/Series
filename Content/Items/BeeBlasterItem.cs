@@ -42,15 +42,15 @@ public class BeeBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
-        Item.GetComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
+        Item.EnableComponent<ItemDebuffDataComponent>().Add(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
 
-        Item.GetComponent<ItemBurstShootingComponent>().Set(2);
+        Item.EnableComponent<ItemBurstShootingComponent>().Set(2);
         
-        Item.GetComponent<ItemShootComponent>()
+        Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
         
-        Item.GetComponent<ItemIntervalShootingComponent>().Set(7, ProjectileID.Bee, 3);
+        Item.EnableComponent<ItemIntervalShootingComponent>().Set(7, ProjectileID.Bee, 3);
     }
 
     public override void AddRecipes()

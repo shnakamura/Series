@@ -42,9 +42,9 @@ public class PearlescentBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.GetComponent<ItemDebuffDataComponent>().Add(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
+        Item.EnableComponent<ItemDebuffDataComponent>().Add(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
 
-        Item.GetComponent<ItemShootComponent>()
+        Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
     }
