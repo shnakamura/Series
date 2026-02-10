@@ -51,7 +51,7 @@ public class AstroDuoBlasterItem : GunItemActor
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()))
-            .AddShootPattern(new IntervalShootPattern(5).AddShootModifier(new TypeModifier(ModContent.ProjectileType<FungiOrb>())));
+            .AddShootPattern(new IntervalShootPattern(5).AddShootModifier(new MuzzleOffsetModifier(25f)).AddShootModifier(new TypeModifier(ModContent.ProjectileType<FungiOrb>())));
     }
 
     public override void AddRecipes()

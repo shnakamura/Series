@@ -49,9 +49,9 @@ public class BuriedBlasterItem : GunItemActor
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()))
-            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new TypeModifier(ProjectileID.Bee)))
-            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new TypeModifier(ProjectileID.Bee)))
-            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new TypeModifier(ProjectileID.Bee)));
+            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new MuzzleOffsetModifier(25f)).AddShootModifier(new TypeModifier(ProjectileID.Bee)))
+            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new MuzzleOffsetModifier(25f)).AddShootModifier(new TypeModifier(ProjectileID.Bee)))
+            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new MuzzleOffsetModifier(25f)).AddShootModifier(new TypeModifier(ProjectileID.Bee)));
         
         Item.EnableComponent<ItemBurstShootComponent>().SetBursts(3);
     }

@@ -54,7 +54,7 @@ public class BlastforgeBlasterItem : GunItemActor
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
             .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()))
-            .AddShootPattern(new IntervalShootPattern(6).AddShootModifier(new TypeModifier(ModContent.ProjectileType<ExcavatorRocket>())).AddProjectileModifier(new FriendlyModifier()));
+            .AddShootPattern(new IntervalShootPattern(6).AddShootModifier(new MuzzleOffsetModifier(25f)).AddShootModifier(new TypeModifier(ModContent.ProjectileType<ExcavatorRocket>())).AddProjectileModifier(new FriendlyModifier()));
     }
 
     public override void AddRecipes()
