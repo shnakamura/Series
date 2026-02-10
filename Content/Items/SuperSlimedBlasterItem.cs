@@ -4,6 +4,7 @@ using Series.Common.Items.Bounce;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Guns;
 using Series.Common.Items.Shooting;
+using Series.Common.Items.Shooting.Patterns;
 using Series.Core.Items;
 using ThoriumMod.Buffs;
 
@@ -47,11 +48,13 @@ public class SuperSlimedBlasterItem : GunItemActor
 
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
-            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
+            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()))
+            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new TypeModifier(ProjectileID.Bee)))
+            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new TypeModifier(ProjectileID.Bee)))
+            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new TypeModifier(ProjectileID.Bee)));
         
         Item.EnableComponent<ItemBurstShootComponent>().SetBursts(3);
         Item.EnableComponent<ItemBounceComponent>().SetBounces(2);
-        Item.EnableComponent<ItemIntervalShootingComponent>().Set(7, ProjectileID.Bee, 3);
     }
 
     public override void AddRecipes()

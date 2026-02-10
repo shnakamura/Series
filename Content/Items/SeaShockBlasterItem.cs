@@ -6,6 +6,7 @@ using CalamityMod.Projectiles.Ranged;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Guns;
 using Series.Common.Items.Shooting;
+using Series.Common.Items.Shooting.Patterns;
 using Series.Core.Items;
 using ThoriumMod.Items.NPCItems;
 
@@ -49,10 +50,10 @@ public class SeaShockBlasterItem : GunItemActor
 
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
-            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
-        
+            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()))
+            .AddShootPattern(new IntervalShootPattern(5).AddShootModifier(new TypeModifier(ModContent.ProjectileType<FungiOrb>())));
+
         Item.EnableComponent<ItemBurstShootComponent>().SetBursts(2);
-        Item.EnableComponent<ItemIntervalShootingComponent>().Set(5, ModContent.ProjectileType<FungiOrb>());
     }
 
     public override void AddRecipes()

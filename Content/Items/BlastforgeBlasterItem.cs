@@ -3,6 +3,7 @@ using Series.Common.Items.Bounce;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Guns;
 using Series.Common.Items.Shooting;
+using Series.Common.Items.Shooting.Patterns;
 using Series.Core.Items;
 using SOTS.Items.AbandonedVillage;
 using SOTS.Items.Earth;
@@ -49,12 +50,11 @@ public class BlastforgeBlasterItem : GunItemActor
 
         Item.EnableComponent<ItemBurstShootComponent>().SetBursts(3);
         Item.EnableComponent<ItemBounceComponent>().SetBounces(2);
-        
+
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
-            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
-        
-        Item.EnableComponent<ItemIntervalShootingComponent>().Set(6, ModContent.ProjectileType<ExcavatorRocket>());
+            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()))
+            .AddShootPattern(new IntervalShootPattern(6).AddShootModifier(new TypeModifier(ModContent.ProjectileType<ExcavatorRocket>())).AddProjectileModifier(new FriendlyModifier()));
     }
 
     public override void AddRecipes()

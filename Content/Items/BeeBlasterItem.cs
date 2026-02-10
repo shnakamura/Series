@@ -1,8 +1,10 @@
 ﻿using CalamityAmmo.Projectiles;
 using CalamityMod.Buffs.StatDebuffs;
+using CalamityMod.Projectiles.Ranged;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Guns;
 using Series.Common.Items.Shooting;
+using Series.Common.Items.Shooting.Patterns;
 using Series.Core.Items;
 
 namespace Series.Content.Items;
@@ -44,12 +46,13 @@ public class BeeBlasterItem : GunItemActor
         Item.EnableComponent<ItemBuffComponent>().AddBuff(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
 
         Item.EnableComponent<ItemBurstShootComponent>().SetBursts(2);
-        
+
         Item.EnableComponent<ItemShootComponent>()
             .AddShootModifier(new MuzzleOffsetModifier(25f))
-            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()));
-        
-        Item.EnableComponent<ItemIntervalShootingComponent>().Set(7, ProjectileID.Bee, 3);
+            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()))
+            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new TypeModifier(ProjectileID.Bee)))
+            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new TypeModifier(ProjectileID.Bee)))
+            .AddShootPattern(new IntervalShootPattern(7).AddShootModifier(new TypeModifier(ProjectileID.Bee)));
     }
 
     public override void AddRecipes()
