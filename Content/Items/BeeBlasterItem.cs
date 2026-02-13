@@ -23,6 +23,20 @@ public class BeeBlasterItem : GunItemActor
 
     public int Counter { get; private set; }
 
+    public override ModItem Clone(Item newEntity)
+    {
+        var original = base.Clone(newEntity);
+
+        if (original is not BeeBlasterItem clone)
+        {
+            return original;
+        }
+
+        clone.Counter = Counter;
+
+        return clone;
+    }
+    
     public override void SetDefaults()
     {
         base.SetDefaults();
@@ -53,7 +67,7 @@ public class BeeBlasterItem : GunItemActor
 
         Item.EnableComponent<ItemBurstData>().SetBursts(2);
     }
-
+    
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
     {
         base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);

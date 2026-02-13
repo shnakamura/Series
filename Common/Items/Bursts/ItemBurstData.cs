@@ -20,7 +20,7 @@ public sealed class ItemBurstData : ItemComponent
     /// <summary>
     ///     Gets the amount of shots to fire in each burst.
     /// </summary>
-    public int Amount { get; private set; }
+    public int BurstAmount { get; private set; }
 
     /// <summary>
     ///     Gets or sets whether to play the item's use sound on each shot in the burst.
@@ -36,7 +36,7 @@ public sealed class ItemBurstData : ItemComponent
             return original;
         }
 
-        clone.Amount = Amount;
+        clone.BurstAmount = BurstAmount;
         clone.PlaySound = PlaySound;
 
         return clone;
@@ -45,15 +45,15 @@ public sealed class ItemBurstData : ItemComponent
     /// <summary>
     ///     Sets the amount of shots to fire in each burst.
     /// </summary>
-    /// <param name="amount">The amount of shots to fire in each burst.</param>
+    /// <param name="burstAmount">The amount of shots to fire in each burst.</param>
     /// <exception cref="ArgumentOutOfRangeException">
-    ///     Thrown when <paramref name="amount" /> is less than or equal to zero.
+    ///     Thrown when <paramref name="burstAmount" /> is less than or equal to zero.
     /// </exception>
-    public ItemBurstData SetBursts(int amount)
+    public ItemBurstData SetBursts(int burstAmount)
     {
-        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount, nameof(amount));
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(burstAmount, nameof(burstAmount));
 
-        Amount = amount;
+        BurstAmount = burstAmount;
 
         return this;
     }

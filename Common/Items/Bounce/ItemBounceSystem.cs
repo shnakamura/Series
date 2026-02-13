@@ -7,15 +7,17 @@ namespace Series.Common.Items.Bounce;
 
 public sealed class ItemBounceSystem : GlobalProjectile
 {
+    public bool Enabled { get; private set; }
+    
     /// <summary>
     ///     Gets the amount of times the projectile can bounce.
     /// </summary>
-    public int Bounces { get; private set; }
+    public int BounceAmount { get; private set; }
     
     /// <summary>
     ///     Gets the multiplier applied to the projectile's velocity after bouncing.
     /// </summary>
-    public float Multiplier { get; private set; }
+    public float BounceMultiplier { get; private set; }
     
     public override bool InstancePerEntity { get; } = true;
 
@@ -28,28 +30,14 @@ public sealed class ItemBounceSystem : GlobalProjectile
             return original;
         }
 
-        clone.Bounces = Bounces;
-        clone.Multiplier = Multiplier;
+        clone.Enabled = Enabled;
+        
+        clone.BounceAmount = BounceAmount;
+        clone.BounceMultiplier = BounceMultiplier;
 
         return clone;
     }
     
-    public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
-    {
-        base.SendExtraAI(projectile, bitWriter, binaryWriter);
-        
-        binaryWriter.Write(Bounces);
-        binaryWriter.Write(Multiplier);
-    }
-
-    public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
-    {
-        base.ReceiveExtraAI(projectile, bitReader, binaryReader);
-
-        Bounces = binaryReader.Read7BitEncodedInt();
-        Multiplier = binaryReader.ReadSingle();
-    }
-
     public override void OnSpawn(Projectile projectile, IEntitySource source)
     {
         base.OnSpawn(projectile, source);
@@ -59,20 +47,52 @@ public sealed class ItemBounceSystem : GlobalProjectile
             return;
         }
 
-        Bounces = component.Bounces;
-        Multiplier = component.Multiplier;
+        Enabled = true;
+
+        BounceAmount = component.BounceAmount;
+        BounceMultiplier = component.BounceMultiplier;
+    }
+    
+    public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
+    {
+        base.SendExtraAI(projectile, bitWriter, binaryWriter);
+
+        if (!Enabled)
+        {
+            return;
+        }
+        
+        binaryWriter.Write(Enabled);
+        
+        binaryWriter.Write(BounceAmount);
+        binaryWriter.Write(BounceMultiplier);
+    }
+
+    public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
+    {
+        base.ReceiveExtraAI(projectile, bitReader, binaryReader);
+
+        if (!Enabled)
+        {
+            return;
+        }
+
+        Enabled = binaryReader.ReadBoolean();
+        
+        BounceAmount = binaryReader.ReadInt32();
+        BounceMultiplier = binaryReader.ReadSingle();
     }
 
     public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
     {
-        if (Bounces <= 0)
+        if (!Enabled || BounceAmount <= 0)
         {
             return true;
         }
         
-        Bounces--;
+        BounceAmount--;
         
-        projectile.velocity = -projectile.velocity * Multiplier;
+        projectile.velocity = -projectile.velocity * BounceMultiplier;
 
         return false;
     }

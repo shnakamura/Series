@@ -2,7 +2,7 @@
 
 namespace Series.Common.Items.Buffs;
 
-public sealed class ItemBuffGlobalItem : GlobalItem
+public sealed class ItemBuffItemSystem : GlobalItem
 {
     public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
     {

@@ -25,6 +25,20 @@ public class SuperSlimedBlasterItem : GunItemActor
 
     public int Counter { get; private set; }
     
+    public override ModItem Clone(Item newEntity)
+    {
+        var original = base.Clone(newEntity);
+
+        if (original is not SuperSlimedBlasterItem clone)
+        {
+            return original;
+        }
+
+        clone.Counter = Counter;
+
+        return clone;
+    }
+    
     public override void SetDefaults()
     {
         base.SetDefaults();

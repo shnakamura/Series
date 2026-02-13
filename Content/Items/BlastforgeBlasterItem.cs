@@ -25,6 +25,20 @@ public class BlastforgeBlasterItem : GunItemActor
 
     public int Counter { get; private set; }
 
+    public override ModItem Clone(Item newEntity)
+    {
+        var original = base.Clone(newEntity);
+
+        if (original is not BlastforgeBlasterItem clone)
+        {
+            return original;
+        }
+
+        clone.Counter = Counter;
+
+        return clone;
+    }
+    
     public override void SetDefaults()
     {
         base.SetDefaults();
@@ -51,7 +65,7 @@ public class BlastforgeBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
         
-        Item.EnableComponent<ItemBounceSystem>().SetBounces(2);
+        Item.EnableComponent<ItemBounceData>().SetBounces(2);
         Item.EnableComponent<ItemBurstData>().SetBursts(3);
         
         Item.EnableComponent<ItemBuffData>().AddBuff<GraniteSurge>(GRANITE_SURGE_DEBUFF_DURATION);

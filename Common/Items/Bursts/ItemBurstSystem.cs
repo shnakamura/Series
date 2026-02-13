@@ -15,9 +15,9 @@ public sealed class ItemBurstSystem : GlobalItem
             return;
         }
 
-        var amount = data.Amount;
+        var amount = data.BurstAmount;
 
-        if (data.Amount < 0)
+        if (data.BurstAmount < 0)
         {
             return;
         }
