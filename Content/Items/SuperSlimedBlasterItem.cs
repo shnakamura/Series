@@ -54,7 +54,7 @@ public class SuperSlimedBlasterItem : GunItemActor
         Item.EnableComponent<ItemBounceData>().SetBounces(2);
         Item.EnableComponent<ItemBurstData>().SetBursts(3);
         
-        Item.EnableComponent<ItemBuffData>().AddBuff(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffData>().AddBuff<GraniteSurge>(GRANITE_SURGE_DEBUFF_DURATION);
     }
 
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

@@ -11,7 +11,7 @@ public abstract class GunItemActor : ModItem
         base.SetDefaults();
         
         Item.EnableComponent<ItemBulletCasingsData>()
-            .SetCasingType(ModContent.GoreType<BulletCasingGore>())
+            .SetCasingType<BulletCasingGore>()
             .SetCasingAmount(1);
         
         Item.EnableComponent<ItemShootAnimationData>();

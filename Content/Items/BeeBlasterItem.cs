@@ -49,7 +49,7 @@ public class BeeBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
-        Item.EnableComponent<ItemBuffData>().AddBuff(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffData>().AddBuff<GalvanicCorrosion>(GALVANIC_CORROSION_DEBUFF_DURATION);
 
         Item.EnableComponent<ItemBurstData>().SetBursts(2);
     }

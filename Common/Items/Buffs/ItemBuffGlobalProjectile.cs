@@ -9,7 +9,7 @@ public sealed class ItemBuffGlobalProjectile : GlobalProjectile
     /// <summary>
     ///     Gets the list of buffs to be applied by the projectile.
     /// </summary>
-    public List<ItemBuffEntry> Buffs { get; private set; }
+    public List<ItemBuffApplicationData> Buffs { get; private set; }
     
     public override bool InstancePerEntity { get; } = true;
 

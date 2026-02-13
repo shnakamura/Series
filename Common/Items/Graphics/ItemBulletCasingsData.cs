@@ -41,6 +41,13 @@ public sealed class ItemBulletCasingsData : ItemComponent
         return this;
     }
     
+    public ItemBulletCasingsData SetCasingType<T>() where T : ModGore
+    {
+        CasingType = ModContent.GoreType<T>();
+
+        return this;
+    }
+    
     public ItemBulletCasingsData SetCasingAmount(int casingAmount)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(casingAmount, nameof(casingAmount));
