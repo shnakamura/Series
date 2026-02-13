@@ -23,6 +23,8 @@ public class BuriedBlasterItem : GunItemActor
 
     public const int BEE_SHOOT_AMOUNT = 3;
 
+    public const int BURST_AMOUNT = 3;
+
     public int Counter { get; private set; }
 
     public override ModItem Clone(Item newEntity)
@@ -65,7 +67,7 @@ public class BuriedBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
-        Item.EnableComponent<ItemBurstData>().SetBursts(3);
+        Item.EnableComponent<ItemBurstData>().SetBursts(BURST_AMOUNT);
         
         Item.EnableComponent<ItemBuffData>().AddBuff<GraniteSurge>(GRANITE_SURGE_DEBUFF_DURATION);
     }

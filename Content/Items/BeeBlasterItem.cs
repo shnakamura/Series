@@ -20,6 +20,8 @@ public class BeeBlasterItem : GunItemActor
     public const int BEE_SHOOT_INTERVAL = 7;
     
     public const int BEE_SHOOT_AMOUNT = 3;
+    
+    public const int BURST_AMOUNT = 2;
 
     public int Counter { get; private set; }
 
@@ -63,9 +65,9 @@ public class BeeBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
+        Item.EnableComponent<ItemBurstData>().SetBursts(BURST_AMOUNT);
+        
         Item.EnableComponent<ItemBuffData>().AddBuff<GalvanicCorrosion>(GALVANIC_CORROSION_DEBUFF_DURATION);
-
-        Item.EnableComponent<ItemBurstData>().SetBursts(2);
     }
     
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

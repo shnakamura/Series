@@ -5,6 +5,8 @@ using CalamityMod.Projectiles.Ranged;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Bursts;
 using Series.Common.Items.Guns;
+using Series.Common.Items.Minions;
+using Series.Content.Projectiles;
 using Series.Core.Items;
 using Terraria.DataStructures;
 
@@ -64,6 +66,8 @@ public class SonicMushBlasterItem : GunItemActor
 
         Item.EnableComponent<ItemBurstData>().SetBursts(2);
 
+        Item.EnableComponent<ItemMinionData>().AddMinion<VultureProjectile>();
+        
         Item.EnableComponent<ItemBuffData>().AddBuff(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
     }
 

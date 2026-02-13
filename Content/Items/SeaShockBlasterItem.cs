@@ -6,6 +6,8 @@ using CalamityMod.Projectiles.Ranged;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Bursts;
 using Series.Common.Items.Guns;
+using Series.Common.Items.Minions;
+using Series.Content.Projectiles;
 using Series.Core.Items;
 using Terraria.DataStructures;
 using ThoriumMod.Items.NPCItems;
@@ -21,6 +23,8 @@ public class SeaShockBlasterItem : GunItemActor
     public const int GALVANIC_CORROSION_DEBUFF_DURATION = 3 * 60;
 
     public const int FUNGAL_ROUND_SHOOT_INTERVAL = 5;
+    
+    public const int BURST_AMOUNT = 2;
 
     public int Counter { get; private set; }
 
@@ -64,8 +68,10 @@ public class SeaShockBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.EnableComponent<ItemBurstData>().SetBursts(2);
+        Item.EnableComponent<ItemBurstData>().SetBursts(BURST_AMOUNT);
 
+        Item.EnableComponent<ItemMinionData>().AddMinion<VultureProjectile>();
+        
         Item.EnableComponent<ItemBuffData>().AddBuff<GalvanicCorrosion>(GALVANIC_CORROSION_DEBUFF_DURATION);
     }
 

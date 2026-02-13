@@ -23,6 +23,10 @@ public class BlastforgeBlasterItem : GunItemActor
 
     public const int EXCAVATOR_ROCKET_SHOOT_INTERVAL = 6;
 
+    public const int BURST_AMOUNT = 3;
+    
+    public const int BOUNCE_AMOUNT = 2;
+    
     public int Counter { get; private set; }
 
     public override ModItem Clone(Item newEntity)
@@ -65,8 +69,8 @@ public class BlastforgeBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
         
-        Item.EnableComponent<ItemBounceData>().SetBounces(2);
-        Item.EnableComponent<ItemBurstData>().SetBursts(3);
+        Item.EnableComponent<ItemBounceData>().SetBounces(BOUNCE_AMOUNT);
+        Item.EnableComponent<ItemBurstData>().SetBursts(BURST_AMOUNT);
         
         Item.EnableComponent<ItemBuffData>().AddBuff<GraniteSurge>(GRANITE_SURGE_DEBUFF_DURATION);
     }

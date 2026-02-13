@@ -22,6 +22,8 @@ public class RadioactiveFlyerBlasterItem : GunItemActor
 
     public const int FUNGAL_ROUND_SHOOT_INTERVAL = 5;
 
+    public const int BURST_AMOUNT = 2;
+
     public int Counter { get; private set; }
 
     public override ModItem Clone(Item newEntity)
@@ -64,7 +66,7 @@ public class RadioactiveFlyerBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
-        Item.EnableComponent<ItemBurstData>().SetBursts(2);
+        Item.EnableComponent<ItemBurstData>().SetBursts(BURST_AMOUNT);
 
         Item.EnableComponent<ItemBuffData>().AddBuff<GalvanicCorrosion>(GALVANIC_CORROSION_DEBUFF_DURATION);
     }

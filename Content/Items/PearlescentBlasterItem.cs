@@ -2,6 +2,8 @@
 using CalamityMod.Items.Materials;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Guns;
+using Series.Common.Items.Minions;
+using Series.Content.Projectiles;
 using Series.Core.Items;
 
 namespace Series.Content.Items;
@@ -39,6 +41,8 @@ public class PearlescentBlasterItem : GunItemActor
         Item.shootSpeed = 15f;
 
         Item.rare = ItemRarityID.Green;
+
+        Item.EnableComponent<ItemMinionData>().AddMinion<VultureProjectile>();
 
         Item.EnableComponent<ItemBuffData>().AddBuff(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
     }

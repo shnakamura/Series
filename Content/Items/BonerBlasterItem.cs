@@ -20,6 +20,8 @@ public class BonerBlasterItem : GunItemActor
     public const int BEE_SHOOT_INTERVAL = 7;
     
     public const int BEE_SHOOT_AMOUNT = 3;
+    
+    public const int BURST_AMOUNT = 3;
 
     public int Counter { get; private set; }
 
@@ -63,7 +65,7 @@ public class BonerBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Orange;
 
-        Item.EnableComponent<ItemBurstData>().SetBursts(3);
+        Item.EnableComponent<ItemBurstData>().SetBursts(BURST_AMOUNT);
 
         Item.EnableComponent<ItemBuffData>().AddBuff<GalvanicCorrosion>(GALVANIC_CORROSION_DEBUFF_DURATION);
     }

@@ -1,4 +1,6 @@
-﻿namespace Series.Common.Items.Minions;
+﻿using JetBrains.Annotations;
+
+namespace Series.Common.Items.Minions;
 
 public interface IItemMinionSpawnData
 {

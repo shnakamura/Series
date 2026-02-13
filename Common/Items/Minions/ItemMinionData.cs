@@ -20,4 +20,18 @@ public sealed class ItemMinionData : ItemComponent
 
         return clone;
     }
+    
+    public ItemMinionData AddMinion(int type)
+    {
+        Minions.Add(new ItemMinionSpawnData(type));
+
+        return this;
+    }
+
+    public ItemMinionData AddMinion<T>() where T : ModProjectile
+    {
+        Minions.Add(new ItemMinionSpawnData<T>());
+
+        return this;
+    }
 }

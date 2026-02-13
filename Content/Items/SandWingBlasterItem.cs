@@ -1,4 +1,7 @@
 ﻿using Series.Common.Items.Guns;
+using Series.Common.Items.Minions;
+using Series.Content.Projectiles;
+using Series.Core.Items;
 using ThoriumMod.Items.BossTheGrandThunderBird;
 using ThoriumMod.Items.Sandstone;
 
@@ -31,6 +34,8 @@ public class SandWingBlasterItem : GunItemActor
         Item.shoot = ProjectileID.Bullet;
 
         Item.rare = ItemRarityID.Green;
+
+        Item.EnableComponent<ItemMinionData>().AddMinion<VultureProjectile>();
     }
 
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

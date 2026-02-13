@@ -2,7 +2,9 @@
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Bursts;
 using Series.Common.Items.Guns;
+using Series.Common.Items.Minions;
 using Series.Common.Recipes;
+using Series.Content.Projectiles;
 using Series.Core.Items;
 
 namespace Series.Content.Items;
@@ -14,6 +16,8 @@ public class DoubleDarkBlasterItem : GunItemActor
     ///     item, in frames.
     /// </summary>
     public const int SLIMED_DEBUFF_DURATION = 3 * 60;
+    
+    public const int BURST_AMOUNT = 2;
 
     public override void SetDefaults()
     {
@@ -41,7 +45,9 @@ public class DoubleDarkBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.EnableComponent<ItemBurstData>().SetBursts(2);
+        Item.EnableComponent<ItemBurstData>().SetBursts(BURST_AMOUNT);
+        
+        Item.EnableComponent<ItemMinionData>().AddMinion<VultureProjectile>();
         
         Item.EnableComponent<ItemBuffData>().AddBuff(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
     }

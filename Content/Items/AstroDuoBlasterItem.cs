@@ -19,6 +19,8 @@ public class AstroDuoBlasterItem : GunItemActor
     public const int GALVANIC_CORROSION_DEBUFF_DURATION = 3 * 60;
 
     public const int FUNGAL_ROUND_SHOOT_INTERVAL = 5;
+    
+    public const int BURST_AMOUNT = 2;
 
     public int Counter { get; private set; }
 
@@ -62,7 +64,7 @@ public class AstroDuoBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
-        Item.EnableComponent<ItemBurstData>().SetBursts(2);
+        Item.EnableComponent<ItemBurstData>().SetBursts(BURST_AMOUNT);
 
         Item.EnableComponent<ItemBuffData>().AddBuff<GalvanicCorrosion>(GALVANIC_CORROSION_DEBUFF_DURATION);
     }

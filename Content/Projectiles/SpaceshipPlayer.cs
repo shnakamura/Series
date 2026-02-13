@@ -35,15 +35,6 @@ public sealed class SpaceshipPlayer : ModPlayer
         {
             return;
         }
-        
-        if (!ProjectileUtilities.Exists<LeftSpaceshipProjectile>())
-        {
-            Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.Center, Vector2.Zero, ModContent.ProjectileType<LeftSpaceshipProjectile>(), 0, 0, Player.whoAmI);
-        }
-        
-        if (!ProjectileUtilities.Exists<RightSpaceshipProjectile>())
-        {
-            Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.Center, Vector2.Zero, ModContent.ProjectileType<RightSpaceshipProjectile>(), 0, 0, Player.whoAmI);
-        }
+
     }
 }

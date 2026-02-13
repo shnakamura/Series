@@ -5,7 +5,7 @@ using Terraria.ModLoader.IO;
 
 namespace Series.Common.Items.Bounce;
 
-public sealed class ItemBounceSystem : GlobalProjectile
+public sealed class ItemBounceProjectileSystem : GlobalProjectile
 {
     public bool Enabled { get; private set; }
     
@@ -25,7 +25,7 @@ public sealed class ItemBounceSystem : GlobalProjectile
     {
         var original = base.Clone(from, to);
 
-        if (original is not ItemBounceSystem clone)
+        if (original is not ItemBounceProjectileSystem clone)
         {
             return original;
         }
