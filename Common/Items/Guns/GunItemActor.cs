@@ -9,10 +9,12 @@ public abstract class GunItemActor : ModItem
     public override void SetDefaults()
     {
         base.SetDefaults();
-
-        Item.EnableComponent<ItemShootAnimationComponent>();
         
-        Item.EnableComponent<ItemBulletCasingsComponent>().Set(ModContent.GoreType<BulletCasingGore>(), 1);
+        Item.EnableComponent<ItemBulletCasingsData>()
+            .SetCasingType(ModContent.GoreType<BulletCasingGore>())
+            .SetCasingAmount(1);
+        
+        Item.EnableComponent<ItemShootAnimationData>();
     }
     
     public override Vector2? HoldoutOffset()

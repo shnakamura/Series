@@ -1,7 +1,7 @@
 ﻿using CalamityAmmo.Projectiles;
 using Series.Common.Items.Buffs;
+using Series.Common.Items.Bursts;
 using Series.Common.Items.Guns;
-using Series.Common.Items.Shooting;
 using Series.Common.Recipes;
 using Series.Core.Items;
 
@@ -36,18 +36,33 @@ public class DoubleDarkBlasterItem : GunItemActor
 
         Item.useAmmo = AmmoID.Bullet;
 
-        Item.shootSpeed = 30f;
+        Item.shootSpeed = 20f;
         Item.shoot = ProjectileID.Bullet;
 
         Item.rare = ItemRarityID.Green;
 
-        Item.EnableComponent<ItemBuffComponent>().AddBuff(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
-
-        Item.EnableComponent<ItemShootComponent>()
-            .AddShootModifier(new MuzzleOffsetModifier(25f))
-            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
+        Item.EnableComponent<ItemBurstData>().SetBursts(2);
         
-        Item.EnableComponent<ItemBurstShootComponent>().SetBursts(2);
+        Item.EnableComponent<ItemBuffData>().AddBuff(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
+    }
+
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+    {
+        base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
+
+        var offset = Vector2.Normalize(velocity) * 25f;
+
+        if (Collision.CanHit(position, 0, 0, position + offset, 0, 0))
+        {
+            position += offset;
+        }
+
+        if (type != ProjectileID.Bullet)
+        {
+            return;
+        }
+
+        type = ModContent.ProjectileType<_PearlBullet>();
     }
 
     public override void AddRecipes()

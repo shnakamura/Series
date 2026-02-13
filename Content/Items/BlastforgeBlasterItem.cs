@@ -1,13 +1,14 @@
 ﻿using CalamityAmmo.Projectiles;
 using Series.Common.Items.Bounce;
 using Series.Common.Items.Buffs;
+using Series.Common.Items.Bursts;
 using Series.Common.Items.Guns;
-using Series.Common.Items.Shooting;
-using Series.Common.Items.Shooting.Patterns;
+using Series.Content.Projectiles;
 using Series.Core.Items;
 using SOTS.Items.AbandonedVillage;
 using SOTS.Items.Earth;
 using SOTS.Projectiles.AbandonedVillage;
+using Terraria.DataStructures;
 using ThoriumMod.Buffs;
 
 namespace Series.Content.Items;
@@ -19,6 +20,10 @@ public class BlastforgeBlasterItem : GunItemActor
     ///     item, in frames.
     /// </summary>
     public const int GRANITE_SURGE_DEBUFF_DURATION = 3 * 60;
+
+    public const int EXCAVATOR_ROCKET_SHOOT_INTERVAL = 6;
+
+    public int Counter { get; private set; }
 
     public override void SetDefaults()
     {
@@ -35,26 +40,96 @@ public class BlastforgeBlasterItem : GunItemActor
         Item.height = 38;
 
         Item.UseSound = SoundID.Item40;
-        Item.useTime = 16;
-        Item.useAnimation = 16;
+        Item.useTime = 26;
+        Item.useAnimation = 26;
         Item.useStyle = ItemUseStyleID.Shoot;
 
         Item.useAmmo = AmmoID.Bullet;
 
-        Item.shootSpeed = 40f;
+        Item.shootSpeed = 30f;
         Item.shoot = ProjectileID.Bullet;
 
         Item.rare = ItemRarityID.Orange;
+        
+        Item.EnableComponent<ItemBounceSystem>().SetBounces(2);
+        Item.EnableComponent<ItemBurstData>().SetBursts(3);
+        
+        Item.EnableComponent<ItemBuffData>().AddBuff(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
+    }
 
-        Item.EnableComponent<ItemBuffComponent>().AddBuff(ModContent.BuffType<GraniteSurge>(), GRANITE_SURGE_DEBUFF_DURATION);
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+    {
+        base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
 
-        Item.EnableComponent<ItemBurstShootComponent>().SetBursts(3);
-        Item.EnableComponent<ItemBounceComponent>().SetBounces(2);
+        var offset = Vector2.Normalize(velocity) * 25f;
 
-        Item.EnableComponent<ItemShootComponent>()
-            .AddShootModifier(new MuzzleOffsetModifier(25f))
-            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()))
-            .AddShootPattern(new IntervalShootPattern(6).AddShootModifier(new MuzzleOffsetModifier(25f)).AddShootModifier(new TypeModifier(ModContent.ProjectileType<ExcavatorRocket>())).AddProjectileModifier(new FriendlyModifier()));
+        if (Collision.CanHit(position, 0, 0, position + offset, 0, 0))
+        {
+            position += offset;
+        }
+
+        if (type != ProjectileID.Bullet)
+        {
+            return;
+        }
+
+        type = ModContent.ProjectileType<_BloodBullet>();
+    }
+
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+    {
+        var leftPosition = position + new Vector2(-(8f * 16f), -(32f * 16f));
+        var leftVelocity = leftPosition.DirectionTo(Main.MouseWorld) * velocity.Length();
+
+        Projectile.NewProjectile
+        (
+            source,
+            leftPosition,
+            leftVelocity,
+            ModContent.ProjectileType<AcidFeatherProjectile>(),
+            damage,
+            knockback,
+            player.whoAmI
+        );
+
+        var rightPosition = position + new Vector2(4f * 16f, -(32f * 16f));
+        var rightVelocity = rightPosition.DirectionTo(Main.MouseWorld) * velocity.Length();
+
+        Projectile.NewProjectile
+        (
+            source,
+            rightPosition,
+            rightVelocity,
+            ModContent.ProjectileType<AcidFeatherProjectile>(),
+            damage,
+            knockback,
+            player.whoAmI
+        );
+
+        Counter++;
+
+        if (Counter < EXCAVATOR_ROCKET_SHOOT_INTERVAL)
+        {
+            return true;
+        }
+
+        var projectile = Projectile.NewProjectileDirect
+        (
+            source,
+            position,
+            velocity,
+            ModContent.ProjectileType<ExcavatorRocket>(),
+            damage,
+            knockback,
+            player.whoAmI
+        );
+
+        projectile.friendly = true;
+        projectile.hostile = false;
+
+        Counter = 0;
+
+        return true;
     }
 
     public override void AddRecipes()

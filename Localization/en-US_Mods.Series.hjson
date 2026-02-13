@@ -180,4 +180,9 @@ Items: {
 	}
 }
 
-Projectiles.VultureProjectile.DisplayName: Vulture
+Projectiles: {
+	VultureProjectile.DisplayName: Vulture
+	AcidFeatherProjectile.DisplayName: Acid Feather Projectile
+	LeftSpaceshipProjectile.DisplayName: Left Spaceship Projectile
+	RightSpaceshipProjectile.DisplayName: Right Spaceship Projectile
+}

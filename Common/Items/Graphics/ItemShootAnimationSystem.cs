@@ -2,13 +2,13 @@
 
 namespace Series.Common.Items.Graphics;
 
-public sealed class ItemShootAnimationComponent : ItemComponent
+public sealed class ItemShootAnimationSystem : GlobalItem
 {
-    public override void UseStyle(Item item, Player player, Rectangle heldItemFrame)
+     public override void UseStyle(Item item, Player player, Rectangle heldItemFrame)
     {
         base.UseStyle(item, player, heldItemFrame);
 
-        if (!Enabled)
+        if (!item.HasComponent<ItemShootAnimationData>())
         {
             return;
         }
@@ -55,7 +55,7 @@ public sealed class ItemShootAnimationComponent : ItemComponent
     {
         base.UseItemFrame(item, player);
 
-        if (!Enabled)
+        if (!item.HasComponent<ItemShootAnimationData>())
         {
             return;
         }

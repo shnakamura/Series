@@ -2,7 +2,7 @@
 using Terraria.Audio;
 using Terraria.DataStructures;
 
-namespace Series.Common.Items.Guns;
+namespace Series.Common.Items.Bursts;
 
 /// <summary>
 ///     Handles modifying an item's use time and use animation so that it shoots in bursts of a
@@ -15,45 +15,31 @@ namespace Series.Common.Items.Guns;
 ///     original firing cadence while allowing multiple shots to be emitted per use without producing
 ///     extra or fractional shots.
 /// </remarks>
-public sealed class ItemBurstShootComponent : ItemComponent
+public sealed class ItemBurstData : ItemComponent
 {
     /// <summary>
     ///     Gets the amount of shots to fire in each burst.
     /// </summary>
     public int Amount { get; private set; }
-    
+
     /// <summary>
     ///     Gets or sets whether to play the item's use sound on each shot in the burst.
     /// </summary>
-    public bool PlaySound { get; set; }
+    public bool PlaySound { get; set; } = true;
 
-    public override void SetDefaults(Item entity)
+    public override GlobalItem Clone(Item from, Item to)
     {
-        base.SetDefaults(entity);
-
-        if (!Enabled)
+        var original = base.Clone(from, to);
+        
+        if (original is not ItemBurstData clone)
         {
-            return;
+            return original;
         }
 
-        var target = entity.useTime / Amount;
+        clone.Amount = Amount;
+        clone.PlaySound = PlaySound;
 
-        target = Math.Max(1, target);
-
-        entity.useTime = target;
-        entity.useAnimation = target * Amount;
-
-        entity.consumeAmmoOnLastShotOnly = true;
-    }
-
-    public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-    {
-        if (Enabled && PlaySound && player.itemAnimation != player.itemAnimationMax && item.UseSound.HasValue)
-        {
-            SoundEngine.PlaySound(item.UseSound, position);
-        }
-
-        return true;
+        return clone;
     }
 
     /// <summary>
@@ -63,10 +49,12 @@ public sealed class ItemBurstShootComponent : ItemComponent
     /// <exception cref="ArgumentOutOfRangeException">
     ///     Thrown when <paramref name="amount" /> is less than or equal to zero.
     /// </exception>
-    public void SetBursts(int amount)
+    public ItemBurstData SetBursts(int amount)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount, nameof(amount));
 
         Amount = amount;
+
+        return this;
     }
 }

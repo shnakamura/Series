@@ -9,7 +9,7 @@ public sealed class ItemBuffGlobalProjectile : GlobalProjectile
     /// <summary>
     ///     Gets the list of buffs to be applied by the projectile.
     /// </summary>
-    public List<ItemBuffData> Buffs { get; private set; }
+    public List<ItemBuffEntry> Buffs { get; private set; }
     
     public override bool InstancePerEntity { get; } = true;
 
@@ -17,7 +17,7 @@ public sealed class ItemBuffGlobalProjectile : GlobalProjectile
     {
         base.OnSpawn(projectile, source);
         
-        if (source is not EntitySource_ItemUse_WithAmmo use || !use.Item.TryGetComponent(out ItemBuffComponent component) || (component.Mode & ItemBuffMode.Shoot) == 0)
+        if (source is not EntitySource_ItemUse_WithAmmo use || !use.Item.TryGetComponent(out ItemBuffData component) || (component.Mode & ItemBuffMode.Shoot) == 0)
         {
             return;
         }
@@ -29,7 +29,7 @@ public sealed class ItemBuffGlobalProjectile : GlobalProjectile
     {
         base.OnHitNPC(projectile, target, hit, damageDone);
 
-        if (Buffs != null && Buffs.Count > 0)
+        if (Buffs == null || Buffs.Count <= 0)
         {
             return;
         }
@@ -44,7 +44,7 @@ public sealed class ItemBuffGlobalProjectile : GlobalProjectile
     {
         base.OnHitPlayer(projectile, target, info);
         
-        if (Buffs != null && Buffs.Count > 0)
+        if (Buffs == null || Buffs.Count <= 0)
         {
             return;
         }

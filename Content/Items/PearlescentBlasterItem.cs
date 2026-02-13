@@ -2,7 +2,6 @@
 using CalamityMod.Items.Materials;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Guns;
-using Series.Common.Items.Shooting;
 using Series.Core.Items;
 
 namespace Series.Content.Items;
@@ -37,15 +36,30 @@ public class PearlescentBlasterItem : GunItemActor
         Item.useAmmo = AmmoID.Bullet;
 
         Item.shoot = ProjectileID.Bullet;
-        Item.shootSpeed = 25f;
+        Item.shootSpeed = 15f;
 
         Item.rare = ItemRarityID.Green;
 
-        Item.EnableComponent<ItemBuffComponent>().AddBuff(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffData>().AddBuff(BuffID.Slimed, SLIMED_DEBUFF_DURATION);
+    }
 
-        Item.EnableComponent<ItemShootComponent>()
-            .AddShootModifier(new MuzzleOffsetModifier(25f))
-            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_PearlBullet>()));
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+    {
+        base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
+
+        var offset = Vector2.Normalize(velocity) * 25f;
+
+        if (Collision.CanHit(position, 0, 0, position + offset, 0, 0))
+        {
+            position += offset;
+        }
+
+        if (type != ProjectileID.Bullet)
+        {
+            return;
+        }
+
+        type = ModContent.ProjectileType<_PearlBullet>();
     }
 
     public override void AddRecipes()

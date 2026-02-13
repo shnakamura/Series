@@ -1,11 +1,9 @@
-﻿using CalamityAmmo.Projectiles;
-using CalamityMod.Buffs.StatDebuffs;
+﻿using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Projectiles.Ranged;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Guns;
-using Series.Common.Items.Shooting;
-using Series.Common.Items.Shooting.Patterns;
 using Series.Core.Items;
+using Terraria.DataStructures;
 using ThoriumMod.Items.BossViscount;
 using ThoriumMod.Items.HealerItems;
 
@@ -18,6 +16,10 @@ public class BloodBlasterItem : GunItemActor
     ///     item, in frames.
     /// </summary>
     public const int GALVANIC_CORROSION_DEBUFF_DURATION = 3 * 60;
+
+    public const int FUNGAL_ROUND_SHOOT_INTERVAL = 5;
+
+    public int Counter { get; private set; }
 
     public override void SetDefaults()
     {
@@ -40,17 +42,40 @@ public class BloodBlasterItem : GunItemActor
 
         Item.useAmmo = AmmoID.Bullet;
 
-        Item.shootSpeed = 35f;
+        Item.shootSpeed = 25f;
         Item.shoot = ProjectileID.Bullet;
 
         Item.rare = ItemRarityID.Green;
 
-        Item.EnableComponent<ItemBuffComponent>().AddBuff(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
+        Item.EnableComponent<ItemBuffData>().AddBuff(ModContent.BuffType<GalvanicCorrosion>(), GALVANIC_CORROSION_DEBUFF_DURATION);
+    }
 
-        Item.EnableComponent<ItemShootComponent>()
-            .AddShootModifier(new MuzzleOffsetModifier(25f))
-            .AddShootModifier(new TypeConversionModifier(ProjectileID.Bullet, ModContent.ProjectileType<_BloodBullet>()))
-            .AddShootPattern(new IntervalShootPattern(5).AddShootModifier(new MuzzleOffsetModifier(25f)).AddShootModifier(new TypeModifier(ModContent.ProjectileType<FungiOrb>())));
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+    {
+        Counter++;
+
+        if (Counter < FUNGAL_ROUND_SHOOT_INTERVAL)
+        {
+            return true;
+        }
+
+        var projectile = Projectile.NewProjectileDirect
+        (
+            source,
+            position,
+            velocity,
+            ModContent.ProjectileType<FungiOrb>(),
+            damage,
+            knockback,
+            player.whoAmI
+        );
+
+        projectile.friendly = true;
+        projectile.hostile = false;
+
+        Counter = 0;
+
+        return true;
     }
 
     public override void AddRecipes()

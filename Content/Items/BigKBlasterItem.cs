@@ -25,8 +25,22 @@ public class BigKBlasterItem : GunItemActor
 
         Item.useAmmo = AmmoID.Bullet;
 
-        Item.shootSpeed = 40f;
+        Item.shootSpeed = 30f;
         Item.shoot = ProjectileID.Bullet;
+    }
+
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+    {
+        base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
+
+        var offset = Vector2.Normalize(velocity) * 100f;
+
+        if (!Collision.CanHit(position, 0, 0, position + offset, 0, 0))
+        {
+            return;
+        }
+
+        position += offset;
     }
 
     public override Vector2? HoldoutOffset()

@@ -37,7 +37,7 @@ public sealed class RecipeGroupSystem : ModSystem
         
         TungstenBar = new RecipeGroup(static () => $"{Lang.GetItemNameValue(ItemID.TungstenBar)}/{Lang.GetItemNameValue(ItemID.SilverBar)}", ItemID.TungstenBar, ItemID.SilverBar);
         
-        RecipeGroup.RegisterGroup(TUNGSTEN_BAR_RECIPE_GROUP_NAME, EvilBar);
+        RecipeGroup.RegisterGroup(TUNGSTEN_BAR_RECIPE_GROUP_NAME, TungstenBar);
     }
 
     public override void Unload()

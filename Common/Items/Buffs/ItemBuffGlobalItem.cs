@@ -8,7 +8,7 @@ public sealed class ItemBuffGlobalItem : GlobalItem
     {
         base.OnHitNPC(item, player, target, hit, damageDone);
         
-        if (!item.TryGetComponent(out ItemBuffComponent component) || (component.Mode & ItemBuffMode.Contact) == 0)
+        if (!item.TryGetComponent(out ItemBuffData component) || (component.Mode & ItemBuffMode.Contact) == 0)
         {
             return;
         }
@@ -23,7 +23,7 @@ public sealed class ItemBuffGlobalItem : GlobalItem
     {
         base.OnHitPvp(item, player, target, hurtInfo);
         
-        if (!item.TryGetComponent(out ItemBuffComponent component) || (component.Mode & ItemBuffMode.Contact) == 0)
+        if (!item.TryGetComponent(out ItemBuffData component) || (component.Mode & ItemBuffMode.Contact) == 0)
         {
             return;
         }
