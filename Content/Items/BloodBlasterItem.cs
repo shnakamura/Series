@@ -2,6 +2,8 @@
 using CalamityMod.Projectiles.Ranged;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Guns;
+using Series.Common.Items.Minions;
+using Series.Content.Projectiles;
 using Series.Core.Items;
 using Terraria.DataStructures;
 using ThoriumMod.Items.BossViscount;
@@ -19,8 +21,10 @@ public class BloodBlasterItem : GunItemActor
 
     public const int FUNGAL_ROUND_SHOOT_INTERVAL = 5;
 
+    public const int SPACESHIP_AMOUNT = 2;
+    
     public int Counter { get; private set; }
-
+    
     public override void SetDefaults()
     {
         base.SetDefaults();
@@ -47,6 +51,8 @@ public class BloodBlasterItem : GunItemActor
 
         Item.rare = ItemRarityID.Green;
 
+        Item.EnableComponent<ItemMinionData>().AddMinion<SpaceshipProjectile>(SPACESHIP_AMOUNT);
+        
         Item.EnableComponent<ItemBuffData>().AddBuff<GalvanicCorrosion>(GALVANIC_CORROSION_DEBUFF_DURATION);
     }
 

@@ -23,7 +23,7 @@ public sealed class ItemMinionPlayerSystem : ModPlayer
         
         foreach (var minion in data.Minions)
         {
-            if (ProjectileUtilities.Exists(minion.Type))
+            if (ProjectileUtilities.Exists(minion.Type, minion.Amount))
             {
                 continue;
             }

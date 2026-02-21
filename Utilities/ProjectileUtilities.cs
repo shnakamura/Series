@@ -2,20 +2,23 @@
 
 public static class ProjectileUtilities
 {
-    /// <summary>
-    ///     Checks whether a projectile of the specified type exists in the world.
-    /// </summary>
-    /// <returns><see langword="true"/> if a projectile of the specified type exists in the world; otherwise, <see langword="false"/>.</returns>
-    public static bool Exists(int type)
+    public static bool Exists(int type, int amount = 1)
     {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(type, nameof(type));
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount, nameof(amount));
+
+        var count = 0;
+
         foreach (var projectile in Main.ActiveProjectiles)
         {
-            if (projectile.active && projectile.type == type)
+            if (!projectile.active || projectile.type != type)
             {
-                return true;
+                continue;
             }
+            
+            count++;
         }
 
-        return false;
+        return count >= amount;
     }
 }

@@ -3,6 +3,7 @@ using CalamityMod.Buffs.StatDebuffs;
 using Series.Common.Items.Buffs;
 using Series.Common.Items.Bursts;
 using Series.Common.Items.Guns;
+using Series.Common.Items.Minions;
 using Series.Content.Projectiles;
 using Series.Core.Items;
 using Terraria.DataStructures;
@@ -23,6 +24,8 @@ public class BeeBlasterItem : GunItemActor
     
     public const int BURST_AMOUNT = 2;
 
+    public const int SPACESHIP_AMOUNT = 2;
+    
     public int Counter { get; private set; }
 
     public override ModItem Clone(Item newEntity)
@@ -66,6 +69,8 @@ public class BeeBlasterItem : GunItemActor
         Item.rare = ItemRarityID.Orange;
 
         Item.EnableComponent<ItemBurstData>().SetBursts(BURST_AMOUNT);
+        
+        Item.EnableComponent<ItemMinionData>().AddMinion<SpaceshipProjectile>(SPACESHIP_AMOUNT);
         
         Item.EnableComponent<ItemBuffData>().AddBuff<GalvanicCorrosion>(GALVANIC_CORROSION_DEBUFF_DURATION);
     }

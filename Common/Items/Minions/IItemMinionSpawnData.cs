@@ -1,8 +1,8 @@
-﻿using JetBrains.Annotations;
-
-namespace Series.Common.Items.Minions;
+﻿namespace Series.Common.Items.Minions;
 
 public interface IItemMinionSpawnData
 {
     int Type { get; }
+    
+    int Amount { get; }
 }

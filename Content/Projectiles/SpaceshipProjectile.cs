@@ -1,9 +1,9 @@
-using Series.Common.Projectiles.Minions;
+﻿using Series.Common.Projectiles.Minions;
 using Terraria.GameContent;
 
 namespace Series.Content.Projectiles;
 
-public class VultureProjectile : MinionProjectileActor
+public class SpaceshipProjectile : MinionProjectileActor
 {
     public override void SetStaticDefaults()
     {
@@ -12,7 +12,7 @@ public class VultureProjectile : MinionProjectileActor
         ProjectileID.Sets.TrailingMode[Type] = 2;
         ProjectileID.Sets.TrailCacheLength[Type] = 4;
     }
-
+    
     public override void SetDefaults()
     {
         base.SetDefaults();
@@ -24,7 +24,7 @@ public class VultureProjectile : MinionProjectileActor
 
         Projectile.width = 64;
         Projectile.height = 64;
-        
+
         Projectile.penetrate = -1;
     }
 
@@ -47,8 +47,8 @@ public class VultureProjectile : MinionProjectileActor
         
         timer++;
 
-        var offset = new Vector2(-Owner.direction * 48f, -24f);
-        var wave = new Vector2(MathF.Sin(timer * 0.05f), MathF.Cos(timer * 0.04f)) * 6f;
+        var offset = new Vector2(-Owner.direction * 24f, -128f);
+        var wave = new Vector2(MathF.Sin(timer * 0.075f + Projectile.whoAmI), 0f) * 64f;
 
         var position = Active ? Owner.Center + offset + wave : Owner.Center - new Vector2(0f, 64f * 16f);
 

@@ -185,4 +185,5 @@ Projectiles: {
 	AcidFeatherProjectile.DisplayName: Acid Feather Projectile
 	LeftSpaceshipProjectile.DisplayName: Left Spaceship Projectile
 	RightSpaceshipProjectile.DisplayName: Right Spaceship Projectile
+	SpaceshipProjectile.DisplayName: Spaceship Projectile
 }
